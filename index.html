@@ -39,7 +39,7 @@
                           <div class="input-group">
                               <input type="text" placeholder="Search for..." class="form-control" id="keyword">
                               <span class="input-group-btn">
-                                  <button class="btn btn-secondary" type="button">Search</button>
+                                  <button class="btn btn-secondary" onclick="performMark()" type="button">Search</button>
                               </span>
                           </div>
                       </div>
@@ -79,19 +79,23 @@
                       <div class="card-body">
                           <div class="row">
                               <div class="col-md-12">
-                                  <ul class="list-unstyled" id="leastUsed">
+                                  <ul class="list-unstyled mb-0" id="leastUsed">
 
                                   </ul>
                               </div>
                           </div>
                       </div>
                   </div>
+                  <!-- Document Stats -->
                   <div class="card my-4">
                       <h5 class="card-header">Document Stats</h5>
                       <div class="card-body">
                           <div class="row">
                               <div class="col-md-12">
-                                  <ul class="list-unstyled" id="documentStats">
+                                  <ul class="list-unstyled mb-0" id="documentStats">
+                                      <li id="docLength"></li>
+                                      <li id="wordCount"></li>
+                                      <li id="charCount"></li>
                                       
                                   </ul>
                               </div>
@@ -103,6 +107,13 @@
 
           </div>
       </div>
+
+      <!-- Template Script Tags -->
+      <script id="template-ul-items" type="text/template">
+          <li>
+              {{val}}
+          </li>
+      </script>
       
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

@@ -166,3 +166,48 @@ function performMark(){
     }
 
 }
+
+function fetchBook(){
+    console.log("hello")
+    // get book title from search widget
+    var book = document.getElementById("book");
+    var bookResults = {}
+    //fetch data with gutendex
+    fetch("https://gutendex.com/books?search=dickens")
+    .then(response => response.json())
+    .then(data =>  results = data.results)
+    .then(() => utilizeSearchResults(results))
+
+}
+fetchBook()
+
+function utilizeSearchResults(results){
+    //isolate top 5 formats 
+
+    //isolate the top 5 results
+    for(let i=0; i<5;i++){
+        let formats = results[i].formats;
+        let formatsArray = Object.keys(formats)
+        //isolate specific plain text format from array of different formats
+        let plainTxtKey = isolatePlainText(formatsArray)
+        // access the value of the plain text format (which is a link that will be fetched)
+        let plainTxtLink = formats[plainTxtKey]
+        if(plainTxtLink.includes(".txt")){
+             //fetch books plain text
+             fetch(plainTxtLink)
+             .then(response => response.json())
+             .then(data => console.log(data))
+
+            
+        }
+        
+    }
+}
+
+function isolatePlainText(array){
+    return array.find(text => text.includes("text/plain"))
+
+    
+    
+
+}

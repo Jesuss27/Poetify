@@ -144,6 +144,7 @@ function performMark(){
 
 }
 
+//main search functions
 function fetchBook(){
     console.log("hello")
     // get book title from search widget
@@ -275,12 +276,20 @@ const addOnClick = (titles, formats) => {
 
 const fetchTitle = async (title, format) => {
     console.log("before fetch")
+    // remove displayBox and show loader
+    showLoader()
+    console.log("after loader")
     const url = `/books?q=${format}`
     
 
     const res = await fetch(url)
     const data = await res.text()
+    
     displayPlainTxt(title, data)
+    //hide loader and add displayBox
+    hideLoader()
+    console.log("after hide")
+   
     
     console.log('title fetched')
 }
@@ -293,9 +302,40 @@ const displayCorruptedFile = (title) => {
     
     document.getElementById("fileContent").innerHTML = `
     <h1>404</h1>
+    <br>
     Sorry, something seems to be wrong with the ${title} file.<br>
     Please select a different one.`
 
 }
 
+const showLoader = () => {
+    // hide displayBox from DOM
+    const display = document.getElementById("fileContent")
+    display.style.display= "none"
+    
 
+    
+    // show loader 
+    const loaderContainer = document.querySelector(".loader-container")
+    loaderContainer.style.height="500px"
+
+    const loader = document.querySelector(".lds-facebook")
+    loader.style.display= "flex"
+
+}
+
+const hideLoader = () => {
+    // show displayBox to DOM
+    const display = document.getElementById("fileContent")
+    display.style.display= "flex"
+    
+
+    // hide loader 
+    const loaderContainer = document.querySelector(".loader-container")
+    loaderContainer.style.height="0"
+
+    const loader = document.querySelector(".lds-facebook")
+    loader.style.display= "none"
+
+
+}

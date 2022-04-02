@@ -17,7 +17,7 @@ app.get("/books", async (req,res,next) =>{
         const plainTxtFile = query.q
         //needle fetch the plain txt passed from client
         const apiRes = await needle("get", `${plainTxtFile}`)
-       
+       console.log(apiRes.body)
         res.send(apiRes.body)
         
         

@@ -4,6 +4,9 @@ background: -webkit-linear-gradient(to right, #734b6d, #42275a);  /* Chrome 10-2
 background: linear-gradient(to right, #734b6d, #42275a); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 }
+li{
+  cursor: pointer;
+}
 
 .responsive{
     max-width:75%;
@@ -24,9 +27,7 @@ img{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     position:relative;
 }
-.displayBox .hide{
-   display:none;
-}
+
 #bodyOverlay{
     position:absolute;
     left:0;
@@ -45,9 +46,8 @@ img{
 .markme{
     background: #734b6d;
 }
-.loader-container .show {
-	height:500px;
-	
+.loader-container  {
+
 }
 
 

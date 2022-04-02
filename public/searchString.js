@@ -9,6 +9,7 @@ function getDocStats(fileContent) {
 
     let text = fileContent.toLowerCase();
     let wordArray = text.match(/\b\S+\b/g);
+    
    
     let wordDictionary = {};
 
@@ -219,7 +220,9 @@ const displayPlainTxt = (title,data) => {
         //declare file content
         document.getElementById("fileName").innerHTML = title
         let fileContent = data
-        fileContent = fileContent.toString().replace(/(?:\r\n|\r|\n)/g, '<br>')
+        
+        fileContent = fileContent.toString().replace(/(?:\r)/g, '<br>')
+        // console.log(fileContent)
         document.getElementById("fileContent").innerHTML = fileContent
         var element = document.getElementById("fileContent")
         element.scrollTop=0;
@@ -275,10 +278,9 @@ const addOnClick = (titles, formats) => {
 }
 
 const fetchTitle = async (title, format) => {
-    console.log("before fetch")
+    
     // remove displayBox and show loader
     showLoader()
-    console.log("after loader")
     const url = `/books?q=${format}`
     
 
@@ -289,9 +291,6 @@ const fetchTitle = async (title, format) => {
     //hide loader and add displayBox
     hideLoader()
     console.log("after hide")
-   
-    
-    console.log('title fetched')
 }
 
 const displayCorruptedFile = (title) => {
@@ -311,7 +310,9 @@ const displayCorruptedFile = (title) => {
 const showLoader = () => {
     // hide displayBox from DOM
     const display = document.getElementById("fileContent")
+
     display.style.display= "none"
+    console.log(display)
     
 
     
@@ -328,6 +329,7 @@ const hideLoader = () => {
     // show displayBox to DOM
     const display = document.getElementById("fileContent")
     display.style.display= "flex"
+    display.style.flexDirection = "column"
     
 
     // hide loader 
